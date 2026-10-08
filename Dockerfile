@@ -12,7 +12,6 @@ RUN CGO_ENABLED=0 go build -ldflags="-s -w" -o yaml-merger .
 FROM scratch
 
 COPY --from=build /build/yaml-merger /yaml-merger
-COPY config.yml /config.yml
 
 EXPOSE 8080
 
