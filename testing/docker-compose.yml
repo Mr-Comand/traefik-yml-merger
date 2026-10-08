@@ -5,5 +5,5 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - ./config.yml:/app/config.yml:ro
+      - ./config.yml:/config.yml:ro
     restart: "no"

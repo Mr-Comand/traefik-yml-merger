@@ -130,7 +130,8 @@ jobs:
 
       - name: Shutdown test stack
         if: always()
-        run: docker compose -f docker-compose.test.yml down
+        working-directory: testing
+        run: docker compose -f docker-compose.yml down
 
   promote-stable:
     runs-on: ubuntu-latest
