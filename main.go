@@ -86,7 +86,7 @@ func load(sources []string) map[string]any {
 	// Merge in config order even though fetching was parallel.
 	for _, result := range results {
 		if result != nil {
-			merge(merged, result)
+			merge(merged, result, 0)
 		}
 	}
 
@@ -115,7 +115,11 @@ func main() {
 		w.Header().Set("Content-Type", "application/yaml")
 		w.Write(data)
 	})
-
+	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "text/plain")
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte("OK\n"))
+	})
 	log.Println("listening on :8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }

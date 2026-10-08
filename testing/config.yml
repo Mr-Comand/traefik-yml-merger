@@ -1,0 +1,5 @@
+sources:
+  - https://example.com/one.yml
+  - https://example.com/two.yml
+
+max_depth: 10

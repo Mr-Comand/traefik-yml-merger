@@ -1,0 +1,9 @@
+services:
+  app_test:
+    image: ${IMAGE_REF}
+    container_name: app_test
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./config.yml:/app/config.yml:ro
+    restart: "no"
