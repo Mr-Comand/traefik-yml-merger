@@ -55,13 +55,14 @@ func merge(dst, src map[string]any, depth uint) {
 		srcMap, srcOK := value.(map[string]any)
 		dstMap, dstOK := dst[key].(map[string]any)
 
-		if !(depth <= config.MAX_DEPTH) && srcOK && dstOK {
+		if depth < config.MAX_DEPTH && srcOK && dstOK {
 			merge(dstMap, srcMap, depth+1)
 			continue
 		}
 
 		// Later files override earlier values.
 		dst[key] = value
+		// fmt.Printf("merged key %s at depth %d\n", key, depth)
 	}
 }
 
